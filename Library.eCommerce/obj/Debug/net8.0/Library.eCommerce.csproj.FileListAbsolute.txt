@@ -1,0 +1,12 @@
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/bin/Debug/net8.0/Library.eCommerce.deps.json
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/bin/Debug/net8.0/Library.eCommerce.dll
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/bin/Debug/net8.0/Library.eCommerce.pdb
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/obj/Debug/net8.0/Library.eCommerce.GeneratedMSBuildEditorConfig.editorconfig
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/obj/Debug/net8.0/Library.eCommerce.AssemblyInfoInputs.cache
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/obj/Debug/net8.0/Library.eCommerce.AssemblyInfo.cs
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/obj/Debug/net8.0/Library.eCommerce.csproj.CoreCompileInputs.cache
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/obj/Debug/net8.0/Library.eCommerce.sourcelink.json
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/obj/Debug/net8.0/Library.eCommerce.dll
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/obj/Debug/net8.0/refint/Library.eCommerce.dll
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/obj/Debug/net8.0/Library.eCommerce.pdb
+/Users/izzyperez/COP4870/Spring2025_Samples/Library.eCommerce/obj/Debug/net8.0/ref/Library.eCommerce.dll

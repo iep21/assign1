@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/izzyperez/COP4870/Spring2025_Samples/Maui.eCommerce/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/izzyperez/COP4870/Spring2025_Samples/Maui.eCommerce/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Maui.eCommerce.app

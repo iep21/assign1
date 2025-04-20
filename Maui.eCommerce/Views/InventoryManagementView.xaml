@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maui.eCommerce.Views.InventoryManagementView"
              Title="InventoryManagementView"
-             NavigatedTo="ContentPage_NavigatedTo"
-             >
+             NavigatedTo="ContentPage_NavigatedTo">
     <VerticalStackLayout>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -14,10 +13,9 @@
             <Entry Text="{Binding Query}" Grid.Column="0"/>
             <Button Text="Search" Grid.Column="1" Clicked="SearchClicked"/>
         </Grid>
-        <ListView
-            ItemsSource="{Binding Path=Products}"
-            SelectedItem="{Binding SelectedProduct}"
-            >
+
+        <!-- ListView to display products -->
+        <ListView ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -28,25 +26,34 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="{Binding Display}"/>
-                            <Button Grid.Column="1" Text="Edit"/>
-                            <Button Grid.Column="2" Text="Delete"/>
+
+                            <!-- Edit Button inside ListView -->
+                            <Button 
+                                Grid.Column="1" 
+                                Text="Edit"
+                                Command="{Binding BindingContext.EditCommand, Source={x:Reference InventoryManagementView}}" 
+                                CommandParameter="{Binding .}" /> <!-- Pass current item as parameter -->
+
+                            <!-- Delete Button inside ListView -->
+                            <Button 
+                                Grid.Column="2" 
+                                Text="Delete"
+                                Command="{Binding BindingContext.DeleteCommand, Source={x:Reference InventoryManagementView}}" 
+                                CommandParameter="{Binding .}" /> <!-- Pass current item as parameter -->
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <!-- Global Add Button -->
         <Button Text="Add" Clicked="AddClicked"/>
-        <Button
-      Text="Edit"
-         Clicked="EditClicked"
-      />
-        <Button
-      Text="Delete"
-      Clicked="DeleteClicked"
-      />
-        <Button
-            Text="Go Back"
-            Clicked="CancelClicked"
-            />
+
+        <!-- Global Edit and Delete Buttons for SelectedProduct -->
+        <Button Text="Edit" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedProduct}"/>
+        <Button Text="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedProduct}"/>
+
+        <!-- Go Back Button -->
+        <Button Text="Go Back" Clicked="CancelClicked"/>
     </VerticalStackLayout>
 </ContentPage>

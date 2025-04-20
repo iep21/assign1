@@ -10,6 +10,7 @@ namespace Maui.eCommerce.ViewModels
 {
     public class ProductViewModel
     {
+        private ProductServiceProxy _svc = ProductServiceProxy.Current;
         public string? Name { 
             get
             {
@@ -29,7 +30,15 @@ namespace Maui.eCommerce.ViewModels
 
         public void AddOrUpdate()
         {
-            ProductServiceProxy.Current.AddOrUpdate(Model);
+            if (Model != null)
+            {
+                _svc.AddOrUpdate(Model);
+            }
+            else
+            {
+                // Optionally, handle the case where Model is null (e.g., show an error message)
+                Console.WriteLine("Error: Product is null.");
+            }
         }
 
         public ProductViewModel() {

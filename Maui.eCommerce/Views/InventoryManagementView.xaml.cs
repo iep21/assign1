@@ -1,44 +1,80 @@
-using Library.eCommerce.Services;
 using Maui.eCommerce.ViewModels;
+using Library.eCommerce.Services;
+using Spring2025_Samples.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace Maui.eCommerce.Views;
-
-public partial class InventoryManagementView : ContentPage
+namespace Maui.eCommerce.Views
 {
-	public InventoryManagementView()
-	{
-		InitializeComponent();
-		BindingContext = new InventoryManagementViewModel();
-	}
-
-    private void DeleteClicked(object sender, EventArgs e)
+    public partial class InventoryManagementView : ContentPage
     {
-        (BindingContext as InventoryManagementViewModel)?.Delete();
-    }
+        // Constructor: Bind the view to the ViewModel
+        public InventoryManagementView()
+        {
+            InitializeComponent();
+            BindingContext = new InventoryManagementViewModel();  // Set BindingContext to the ViewModel
+            Console.WriteLine("BindingContext set.");
+        }
 
-    private void CancelClicked(object sender, EventArgs e)
-    {
-		Shell.Current.GoToAsync("//MainPage");
-    }
+        // Delete product from inventory
+        private void DeleteClicked(object sender, EventArgs e)
+        {
+            var product = (sender as Button)?.BindingContext as Product;
+            if (product != null)
+            {
+                (BindingContext as InventoryManagementViewModel)?.DeleteProduct(product);  // Pass the product to the ViewModel
+            }
+            else
+            {
+                Console.WriteLine("Product is null, cannot delete.");
+            }
+        }
 
-    private void AddClicked(object sender, EventArgs e)
-    {
-        Shell.Current.GoToAsync("//Product");
-    }
+        // Navigate back to MainPage
+        private void CancelClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//MainPage");
+        }
 
-    private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
-    {
-        (BindingContext as InventoryManagementViewModel)?.RefreshProductList();
-    }
+        // Navigate to ProductDetails page to add a new product
+        private void AddClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//Product");
+        }
 
-    private void EditClicked(object sender, EventArgs e)
-    {//TODO: ?????????????
-        var productId = (BindingContext as InventoryManagementViewModel)?.SelectedProduct?.Id;
-        Shell.Current.GoToAsync($"//Product?productId={productId}");
-    }
+        // Refresh product list when navigated to this page
+        private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+        {
+            if (BindingContext != null)
+            {
+                (BindingContext as InventoryManagementViewModel)?.RefreshProductList();
+            }
+        }
 
-    private void SearchClicked(object sender, EventArgs e)
-    {
-        (BindingContext as InventoryManagementViewModel)?.RefreshProductList();
+        // Navigate to ProductDetails to edit a product
+        private void EditClicked(object sender, EventArgs e)
+        {
+            var product = (sender as Button)?.BindingContext as Product;
+            if (product != null)
+            {
+                Shell.Current.GoToAsync($"//Product?productId={product.Id}");  // Pass productId to the ProductDetails page
+            }
+        }
+
+        // Search functionality to filter the products
+        private void SearchClicked(object sender, EventArgs e)
+        {
+            (BindingContext as InventoryManagementViewModel)?.RefreshProductList();
+        }
+
+        // This method is triggered when a product is selected from the ListView
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            (BindingContext as InventoryManagementViewModel).SelectedProduct = e.SelectedItem as Product;
+        }
+    
     }
 }

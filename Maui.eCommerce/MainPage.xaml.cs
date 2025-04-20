@@ -1,10 +1,11 @@
-﻿using Maui.eCommerce.ViewModels;
+﻿using System.Threading.Tasks;
+using Maui.eCommerce.ViewModels;
 
 namespace Maui.eCommerce
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private int count = 0;
 
         public MainPage()
         {
@@ -12,9 +13,10 @@ namespace Maui.eCommerce
             BindingContext = this;
         }
 
-        private void InventoryClicked(object sender, EventArgs e)
+        private async void InventoryClicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//InventoryManagement");
+            // Navigate to Inventory Management page
+            await Shell.Current.GoToAsync("//InventoryManagementView");
         }
     }
 
